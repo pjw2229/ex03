@@ -10,6 +10,7 @@ import java.util.stream.IntStream;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +25,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/sample")
 @Log4j
 public class SampleController {
-	@GetMapping(value = "/getText", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value = "/getText", produces = "text/plain; charset=UTF-8")
 	public String getText() {
 		log.info("MIME TYPE(데이터타입 의미) : " + MediaType.TEXT_PLAIN_VALUE);
 		return "안녕하쇼";
