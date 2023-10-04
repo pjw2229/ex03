@@ -45,4 +45,6 @@ public class SampleControllerTests {
 		// crud = read, create, update, delete
 		// 메소드 : get, post, put, patch, delete
 	}
+	
+	
 }
