@@ -7,6 +7,7 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- Spring에서 관리되는 객체를 검색할 패키지명 -->
 	<mybatis-spring:scan base-package="org.zerock.mapper" />
 	<!-- HikariCP 객체 등록 -->
 	<!-- HikariConfig hikariConfig = new HikariConfig() -->
