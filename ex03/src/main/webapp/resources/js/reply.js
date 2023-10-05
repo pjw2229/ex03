@@ -38,7 +38,7 @@ var replyService = (function(){
 		})*/
 
 		// $.getJSON(요청주소, 성공 시 처리함수).fail(실패 시 처리함수)
-		$.getJSON("/replies/pages/" + bno + ".json", function(result){
+		$.getJSON("/replies/pages/" + bno, function(result){
 			console.log("댓글 목록 정상 처리");
 			if(callback)
 				callback(result);
@@ -49,7 +49,7 @@ var replyService = (function(){
 	};
 	
 	// 댓글 수정
-	function update(rno,reply,callback,error){
+	function modify(rno,reply,callback,error){
 		console.log("댓글 수정");
 		$.ajax({
 			type: "put",
@@ -69,10 +69,10 @@ var replyService = (function(){
 	}
 	
 	// 댓글 1개 가져오기
-	function read(rno,callback,error){
+	function get(rno,callback,error){
 		console.log("댓글 1개 가져오기");
-		$.getJSON("/replies/read/" + rno + ".json", function(result){
-			console.log("댓글 1개 정상적으로 가져왔습니다.");
+		$.getJSON("/replies/read/" + rno, function(result){
+			console.log("댓글 " + rno + "번 정상적으로 가져왔습니다.");
 			if(callback)
 				callback(result);
 		}).fail(function(xhr,status,er){
@@ -81,7 +81,7 @@ var replyService = (function(){
 		});
 	};
 	
-	function del(rno,callback,error){
+	function remove(rno,callback,error){
 		console.log("댓글 삭제");
 		$.ajax({
 			type: "delete",
@@ -97,5 +97,5 @@ var replyService = (function(){
 			}
 		})
 	}
-	return {add:add, getList:getList, update:update, read:read, del:del};	// 이름 : 값(함수)
+	return {add:add, getList:getList, update:modify, read:get, del:remove};	// 이름 : 값(함수)
 })();

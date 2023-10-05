@@ -54,25 +54,27 @@
 	<script src="/resources/js/reply.js"></script>
 	<script>
 		console.log(replyService);
+		replyService.getList(${board.bno}, function(a){
+			console.log(a)
+		});
+		replyService.read(8, function(a){
+			console.log(a)
+		});
+		
+		/*
 		reply={reply:"JavaScript로 Test",replyer:"관리자박",bno:285};
-		replyService.add(reply, function(a){
+		replyService.add(reply, function(a){	// 댓글 작성
 			console.log(a)
 		});
-		
-		replyService.getList(285, function(a){
+		replyService.del(20, function(a){		// 댓글 삭제
 			console.log(a)
 		});
-		replyService.read(33, function(a){
-			console.log(a)
-		});
-		replyService.del(15, function(a){
-			console.log(a)
-		});
-		
+
 		rep={reply:"(수정 완료)",replyer:"관리자 박"};
-		replyService.update(31, rep, function(a){
+		replyService.update(45, rep, function(a){	// 댓글 수정
 			console.log(a)
 		});
+		*/
 	</script>
 </body>
 </html>
