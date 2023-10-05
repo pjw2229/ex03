@@ -55,7 +55,24 @@
 	<script>
 		console.log(replyService);
 		reply={reply:"JavaScript로 Test",replyer:"관리자박",bno:285};
-		replyService.add(reply);
+		replyService.add(reply, function(a){
+			console.log(a)
+		});
+		
+		replyService.getList(285, function(a){
+			console.log(a)
+		});
+		replyService.read(33, function(a){
+			console.log(a)
+		});
+		replyService.del(15, function(a){
+			console.log(a)
+		});
+		
+		rep={reply:"(수정 완료)",replyer:"관리자 박"};
+		replyService.update(31, rep, function(a){
+			console.log(a)
+		});
 	</script>
 </body>
 </html>

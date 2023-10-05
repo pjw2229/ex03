@@ -19,8 +19,83 @@ var replyService = (function(){
 		})
 	}
 	
-	function add2(){
-		console.log("댓글들이다?");
+	// 댓글 목록
+	function getList(bno,callback,error){
+		console.log("댓글 목록");
+		/*
+		$.ajax({
+			type: "get",
+			url: "/replies/pages/" + bno + ".json",
+			success:function(result,status,xhr){
+				console.log("댓글 목록 정상 처리");
+				if(callback)
+					callback(result);
+			},
+			error:function(xhr,status,er){
+				if(error)
+					error(er);
+			}
+		})*/
+
+		// $.getJSON(요청주소, 성공 시 처리함수).fail(실패 시 처리함수)
+		$.getJSON("/replies/pages/" + bno + ".json", function(result){
+			console.log("댓글 목록 정상 처리");
+			if(callback)
+				callback(result);
+		}).fail(function(xhr,status,er){
+			if(error)
+				error(er);
+		});
+	};
+	
+	// 댓글 수정
+	function update(rno,reply,callback,error){
+		console.log("댓글 수정");
+		$.ajax({
+			type: "put",
+			url: "/replies/" + rno,
+			data: JSON.stringify(reply),
+			contentType:"application/json;charset=UTF-8",
+			success:function(result,status,xhr){
+				console.log("댓글 수정 완료");
+				if(callback)
+					callback(result);
+			},
+			error:function(xhr,status,er){
+				if(error)
+					error(er);
+			}
+		})
 	}
-	return {add:add, aaa:add2};
+	
+	// 댓글 1개 가져오기
+	function read(rno,callback,error){
+		console.log("댓글 1개 가져오기");
+		$.getJSON("/replies/read/" + rno + ".json", function(result){
+			console.log("댓글 1개 정상적으로 가져왔습니다.");
+			if(callback)
+				callback(result);
+		}).fail(function(xhr,status,er){
+			if(error)
+				error(er);
+		});
+	};
+	
+	function del(rno,callback,error){
+		console.log("댓글 삭제");
+		$.ajax({
+			type: "delete",
+			url: "/replies/" + rno,
+			success:function(result,status,xhr){
+				console.log("댓글 정상적으로 삭제됨");
+				if(callback)
+					callback(result);
+			},
+			error:function(xhr,status,er){
+				if(error)
+					error(er);
+			}
+		})
+	}
+	return {add:add, getList:getList, update:update, read:read, del:del};	// 이름 : 값(함수)
 })();
