@@ -51,7 +51,7 @@
 	<!-- /#page-wrapper -->
 	<%@ include file="../includes/footer.jsp" %>
 	<!-- 댓글처리 JavaScript -->
-	<script type="/resources/js/reply.js"></script>
+	<script src="/resources/js/reply.js"></script>
 	<script>
 		console.log(replyService);
 		reply={reply:"JavaScript로 Test",replyer:"관리자박",bno:285};
