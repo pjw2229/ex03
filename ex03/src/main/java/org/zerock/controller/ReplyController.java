@@ -25,11 +25,13 @@ import lombok.extern.log4j.Log4j;
 public class ReplyController {
 	private ReplyService service;
 
-	@PostMapping(value = "/new", produces = "text/plain; charset=UTF-8")
+	// consumes를 통해 보내온 데이터타입 확인해 틀리면 415
+	@PostMapping(value = "/new", consumes=MediaType.APPLICATION_JSON_VALUE, produces = "text/plain; charset=UTF-8")
 	public ResponseEntity<String> urlNew(@RequestBody ReplyVO vo) {
 		log.info("등록할 댓글 정보 : " + vo);
 		// 댓글 등록 시 success 문자를 보내고 상태는 정상, 실패 시 500 error
-		return service.register(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		return service.register(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK) : new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		// HttpStatus.BAD_REQUEST : 400 error
 	}
 	
 	@DeleteMapping("/{rno}")
