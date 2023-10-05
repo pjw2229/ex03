@@ -35,4 +35,14 @@ public class ReplyServiceImpl implements ReplyService{
 	public int remove(Long rno) {
 		return mapper.delete(rno);
 	}
+
+	@Override
+	public ReplyVO get(Long rno) {
+		return mapper.get(rno);
+	}
+
+	@Override
+	public Long cnt(Long bno) {
+		return mapper.cnt(bno);
+	}
 }

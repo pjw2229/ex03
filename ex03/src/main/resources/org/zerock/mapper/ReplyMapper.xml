@@ -15,4 +15,10 @@
 	<delete id="delete">
 		delete from tbl_reply where rno=#{rno}
 	</delete>
+	<select id="get" resultType="org.zerock.domain.ReplyVO">
+		select * from tbl_reply where rno=#{rno}
+	</select>
+	<select id="cnt" resultType="long">
+		select count(*) from tbl_reply where bno=#{bno}
+	</select>
 </mapper>

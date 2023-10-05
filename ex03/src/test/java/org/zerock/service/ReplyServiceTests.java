@@ -43,4 +43,14 @@ public class ReplyServiceTests {
 	public void testRemove() {
 		log.info(service.remove(30L));
 	}
+	
+	@Test
+	public void testGet() {
+		log.info(service.get(26L));
+	}
+	
+	@Test
+	public void testCnt() {
+		log.info(service.cnt(285L));
+	}
 }

@@ -9,4 +9,6 @@ public interface ReplyMapper {
 	List<ReplyVO> getList(Long bno);	// 목록 읽기
 	int update(ReplyVO vo);				// 수정
 	int delete(Long rno);				// 삭제
+	ReplyVO get(Long rno);				// 댓글 1개 보기
+	Long cnt(Long bno);					// 댓글 갯수
 }
