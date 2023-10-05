@@ -14,6 +14,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import org.zerock.domain.ReplyVO;
 import org.zerock.domain.SampleVO;
 
 import com.google.gson.Gson;
@@ -46,5 +47,14 @@ public class SampleControllerTests {
 		// 메소드 : get, post, put, patch, delete
 	}
 	
-	
+	// json 생성
+	@Test
+	public void makeJson() {
+		ReplyVO vo = new ReplyVO();
+		
+		vo.setBno(284L);
+		vo.setReply("그냥 댓글 내용이다.");
+		vo.setReplyer("관리자 박");
+		log.info("json 문자열 : " + new Gson().toJson(vo));
+	}
 }

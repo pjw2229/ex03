@@ -62,10 +62,7 @@ public class SampleController {
 	@GetMapping(value = "/check", params = {"height", "weight"})	// /sample/check?height=140&weight=50
 	public ResponseEntity<SampleVO> check(Double height, Double weight){
 		SampleVO vo = new SampleVO(0, "" + height, "" + weight);
-		if(height < 150)
-			return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(vo);
-		else
-			return ResponseEntity.status(HttpStatus.OK).body(vo);
+		return height < 150 ? ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(vo) : ResponseEntity.status(HttpStatus.OK).body(vo);
 	}
 	
 	// url에 있는 값 읽기	/sample/product/dog/111
