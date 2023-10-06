@@ -47,6 +47,7 @@
                     			<div class="panel panel-default">
                     				<div class="panel=heading">
                     					<i class="fa fa-comments fa-fw"></i> 댓글
+                    					<button id="replyBtn" class="btn btn-primary btn-xs pull-right">댓글쓰기</button>
                     				</div>
                     				<div class="panel-body">
                     					<ul class="chat">
@@ -61,6 +62,30 @@
     	</div><!-- /.row -->
 	</div>
 	<!-- /#page-wrapper -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    	<div class="modal-dialog">
+        	<div class="modal-content">
+            	<div class="modal-header">
+                	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                	<h4 class="modal-title" id="myModalLabel">댓글 작성</h4>
+                </div>
+                <div class="modal-body">
+                	<div class="form-group">
+                		<label>댓글</label>
+                		<input class="form-control" name='reply'>
+                	</div>
+                	<div class="form-group">
+                		<label>작성자</label>
+                		<input class="form-control" name='replyer'>
+                	</div>
+                </div>
+                <div class="modal-footer">
+                	<button id="registerBtn" type="button" class="btn btn-default" data-dismiss="modal">작성</button>
+                    <button id="modalCloseBtn" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div> <!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 	<%@ include file="../includes/footer.jsp" %>
 	<!-- 댓글처리 JavaScript -->
 	<script src="/resources/js/reply.js"></script>
@@ -84,6 +109,28 @@
 				str += "</p></div></li>";
 			}
 			$(".chat").html(str);		// 3. 해당 위치에 삽입
+		});
+		
+		var modal = $(".modal");
+		
+		$("#replyBtn").click(function(){
+			modal.find("input").val("");
+			
+			$(".modal").modal("show");
+		});
+		
+		$("#registerBtn").click(function(){
+			var reply = {
+				reply: modal.find("input[name='reply']").val(),
+				replyer: modal.find("input[name='replyer']").val(),
+				bno:${board.bno}
+			};
+			
+			replyService.add(reply, function(res){	// 댓글 작성
+				alert(res);
+				modal.find("input").val("");
+				modal.modal("hide");
+			});
 		});
 		
 		/*

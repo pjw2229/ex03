@@ -50,24 +50,18 @@ var replyService = (function(){
 
 	// 시간 처리
 	function displayTime(timeValue){
-		var today = new Date();
-		var gap = today.getTime() - timeValue;
 		var dataObj = new Date(timeValue);
-		var str = "";
-		
+		var gap = new Date().getTime() - timeValue;
+
 		if(gap < (1000 * 60 * 60 * 24)){
 			var hh = dataObj.getHours();
 			var mi = dataObj.getHours();
 			var ss = dataObj.getHours();
 			return [(hh > 9 ? '' : '0') + hh, '시 ', (mi > 9 ? '' : '0') + mi, '분 ', (ss > 9 ? '' : '0') + ss, '초'].join('');
-		}else {
-			var yy = dataObj.getFullYear();
-			var mm = dataObj.getMonth() + 1;
-			var dd = dataObj.getDate();
-			return [yy, '년 ', mm, '월 ', dd, '일'].join('');
-		}
+		} else
+			return [dataObj.getFullYear(), '년 ', dataObj.getMonth() + 1, '월 ', dataObj.getDate(), '일'].join('');
 	};
-	
+
 	// 댓글 수정
 	function modify(rno,reply,callback,error){
 		console.log("댓글 수정");
