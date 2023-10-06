@@ -40,9 +40,39 @@
                                 <a href="/board/list?pageNum=${cri.pageNum}&amount=${cri.amount}">
                                 	<button type="button" class="btn btn-outline btn-primary">목록</button>
                                 </a>
-                                
                             </div><!-- /.col-lg-6 (nested) -->
                     	</div><!-- /.row (nested) -->
+                    	<div class='row'>
+                    		<div class="col-lg-12">
+                    			<div class="panel panel-default">
+                    				<div class="panel=heading">
+                    					<i class="fa fa-comments fa-fw"></i> 댓글
+                    				</div>
+                    				<div class="panel-body">
+                    					<ul class="chat">
+                    						<li class="left clearfix" data-rno='34'>
+                    							<div>
+                    								<div class="header">
+                    									<strong class="primary-font">관리자 박</strong>
+                    									<small class="pull-right text-muted">10월 5일 10:24</small>
+                    								</div>
+                    								<p>그냥 댓글 내용이다.</p>
+                    							</div>
+                    						</li>
+                    						<li class="left clearfix" data-rno='34'>
+                    							<div>
+                    								<div class="header">
+                    									<strong class="primary-font">관리자 박</strong>
+                    									<small class="pull-right text-muted">10월 5일 10:24</small>
+                    								</div>
+                    								<p>그냥 댓글 내용이다.</p>
+                    							</div>
+                    						</li>
+                    					</ul>
+                    				</div>
+                    			</div>
+                    		</div>
+                    	</div>
                 	</div><!-- /.panel-body -->
             	</div><!-- /.panel -->
         	</div><!-- /.col-lg-12 -->
@@ -54,13 +84,22 @@
 	<script src="/resources/js/reply.js"></script>
 	<script>
 		console.log(replyService);
-		replyService.getList(${board.bno}, function(a){
-			console.log(a)
+		/*
+		var replyUL = $(".chat");
+		replyService.getList(${board.bno}, function(list){
+			var str = "";
+			if(list == null || list.length == 0){
+				replyUL.html("");
+				return;
+			}
+			for(var i = 0, len = list.length ||0; i < len; i++)
+				
+			console.log(list)
 		});
 		replyService.read(8, function(a){
 			console.log(a)
 		});
-		
+		*/
 		/*
 		reply={reply:"JavaScript로 Test",replyer:"관리자박",bno:285};
 		replyService.add(reply, function(a){	// 댓글 작성
