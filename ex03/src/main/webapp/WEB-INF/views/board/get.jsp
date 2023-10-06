@@ -50,24 +50,6 @@
                     				</div>
                     				<div class="panel-body">
                     					<ul class="chat">
-                    						<li class="left clearfix" data-rno='34'>
-                    							<div>
-                    								<div class="header">
-                    									<strong class="primary-font">관리자 박</strong>
-                    									<small class="pull-right text-muted">10월 5일 10:24</small>
-                    								</div>
-                    								<p>그냥 댓글 내용이다.</p>
-                    							</div>
-                    						</li>
-                    						<li class="left clearfix" data-rno='34'>
-                    							<div>
-                    								<div class="header">
-                    									<strong class="primary-font">관리자 박</strong>
-                    									<small class="pull-right text-muted">10월 5일 10:24</small>
-                    								</div>
-                    								<p>그냥 댓글 내용이다.</p>
-                    							</div>
-                    						</li>
                     					</ul>
                     				</div>
                     			</div>
@@ -83,24 +65,32 @@
 	<!-- 댓글처리 JavaScript -->
 	<script src="/resources/js/reply.js"></script>
 	<script>
-		console.log(replyService);
-		/*
-		var replyUL = $(".chat");
-		replyService.getList(${board.bno}, function(list){
+		// console.log(replyService);
+		replyService.getList(${board.bno}, function(list){	// 1. 해당 게시글 가져오기
 			var str = "";
 			if(list == null || list.length == 0){
-				replyUL.html("");
+				$(".chat").html("");
 				return;
 			}
-			for(var i = 0, len = list.length ||0; i < len; i++)
-				
-			console.log(list)
+			for(var i = 0; i < list.length; i++){		// 2. 화면에 넣을 댓글 가공
+				str += "<li class='left clearfix' data-rno='";
+				str += list[i].rno;
+				str += "'>	<div><div class='header'><strong class='primary-font'>";
+				str += list[i].replyer;
+				str += "</strong>		<small class='pull-right text-muted'>";
+				str += replyService.displayTime(list[i].replyDate);
+				str += "</small></div>		<p>";
+				str += list[i].reply;
+				str += "</p></div></li>";
+			}
+			$(".chat").html(str);		// 3. 해당 위치에 삽입
 		});
+		
+		/*
 		replyService.read(8, function(a){
 			console.log(a)
 		});
-		*/
-		/*
+		
 		reply={reply:"JavaScript로 Test",replyer:"관리자박",bno:285};
 		replyService.add(reply, function(a){	// 댓글 작성
 			console.log(a)

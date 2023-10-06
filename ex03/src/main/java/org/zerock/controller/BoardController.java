@@ -50,7 +50,7 @@ public class BoardController {
 
 	@GetMapping("/get")			// 조회(글번호 - bno) board/get (get)
 	public void get(Long bno, Model m, Criteria cri) {
-		log.info("글 상세보기 url 요청");
+		//log.info("글 상세보기 url 요청");
 		m.addAttribute("board", service.get(bno));
 		m.addAttribute("cri", cri);		// -> board/get.jsp
 	}
