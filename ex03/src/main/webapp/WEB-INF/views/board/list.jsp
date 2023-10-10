@@ -29,8 +29,14 @@
                         		</div>
                         	</td>
                         	<td>
-                        		<div>현재 시간 : ${serverTime}</div>
+                        		<div class="panel-heading">
+                        			<div>댓글 달린 글 갯수 : ${totalReplyCount}개</div>
+                        		</div>
                         	</td>
+                        	<!--
+                        	<td>
+                        		<div>현재 시간 : ${serverTime}</div>
+                        	</td>  -->
                     	</tr>
                     </table><!-- /.panel-heading -->
                     <div class="panel-body">
@@ -53,7 +59,7 @@
 	                                	<a href="/board/get?bno=${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">
 	                                    	<c:out value="${board.title}"/>
 	                                    	<c:if test="${not empty board.replyCount}">
-	                                    		<c:out value="[${board.replyCount}]"/>
+		                                    	<c:out value="[${board.replyCount}]"/>
 	                                    	</c:if>
 	                                	</a>
 	                                </td>

@@ -69,4 +69,9 @@ public class BoardServiceImpl implements BoardService {
 	public void unrecom(Long bno) {
 		mapper.unrecom(bno);
 	}
+
+	@Override
+	public Long totalReplyCount() {
+		return mapper.totalReplyCount();
+	}
 }

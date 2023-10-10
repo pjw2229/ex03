@@ -13,6 +13,7 @@ public interface BoardService {
 	BoardVO get(Long bno);		// 5. 게시글 상세
 	Long cnt(Criteria cri);		// 6. 게시글 갯수
 	Long todayCnt(Criteria cri);
+	Long totalReplyCount();
 	void recom(Long bno);
 	void unrecom(Long bno);
 }

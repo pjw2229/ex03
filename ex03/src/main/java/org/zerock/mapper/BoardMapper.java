@@ -24,6 +24,7 @@ public interface BoardMapper {
 	List<BoardVO> lastBoard();			// 업데이트 일자 기준 가장 최신글 5개
 	List<HourGroupVO> hourGroup();		// 작성 시간대별 글 갯수 통계 - 00 5 / 01 1 / .. / 23 11
 	Long todayCount(Criteria cri);		// 게시글 검색
+	Long totalReplyCount();
 	void recom(Long bno);				// 추천 시 추천 카운트 +1
 	void unrecom(Long bno);				// 비추천 시 비추천 카운트 +1
 }

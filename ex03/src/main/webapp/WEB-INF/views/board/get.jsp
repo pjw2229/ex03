@@ -42,7 +42,8 @@
                                 </a>
                             </div><!-- /.col-lg-6 (nested) -->
                     	</div><!-- /.row (nested) -->
-                    	<ol id="chat" class="table table-striped table-bordered table-hover"></ol>
+                    	<div id="chat" class="panel panel-default">
+                    	</div>
                         <!-- 댓글끝 -->
                         <input id="replyData" type="text" placeholder="댓글내용" style="width:50%;">
                         <input id="replyWriter" type="text" placeholder="작성자" style="width:100px;">
