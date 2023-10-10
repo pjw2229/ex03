@@ -47,6 +47,8 @@
                     			<div class="panel panel-default">
                     				<div class="panel=heading">
                     					<i class="fa fa-comments fa-fw"></i> 댓글
+                    					<input id="replyData" class="form-control" type="text" placeholder="댓글내용">
+                             			<input id="replyWriter" type="text" placeholder="작성자">
                     					<button id="replyBtn" class="btn btn-primary btn-xs pull-right">댓글쓰기</button>
                     				</div>
                     				<div class="panel-body">
@@ -55,102 +57,89 @@
                     				</div>
                     			</div>
                     		</div>
-                    	</div>
+                    	</div><!-- /.row (댓글) -->
                 	</div><!-- /.panel-body -->
             	</div><!-- /.panel -->
         	</div><!-- /.col-lg-12 -->
     	</div><!-- /.row -->
 	</div>
 	<!-- /#page-wrapper -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    	<div class="modal-dialog">
-        	<div class="modal-content">
-            	<div class="modal-header">
-                	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                	<h4 class="modal-title" id="myModalLabel">댓글 작성</h4>
-                </div>
-                <div class="modal-body">
-                	<div class="form-group">
-                		<label>댓글</label>
-                		<input class="form-control" name='reply'>
-                	</div>
-                	<div class="form-group">
-                		<label>작성자</label>
-                		<input class="form-control" name='replyer'>
-                	</div>
-                </div>
-                <div class="modal-footer">
-                	<button id="registerBtn" type="button" class="btn btn-default" data-dismiss="modal">작성</button>
-                    <button id="modalCloseBtn" type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                </div>
-            </div><!-- /.modal-content -->
-        </div> <!-- /.modal-dialog -->
-    </div><!-- /.modal -->
 	<%@ include file="../includes/footer.jsp" %>
 	<!-- 댓글처리 JavaScript -->
 	<script src="/resources/js/reply.js"></script>
 	<script>
 		// console.log(replyService);
-		replyService.getList(${board.bno}, function(list){	// 1. 해당 게시글 가져오기
-			var str = "";
-			if(list == null || list.length == 0){
-				$(".chat").html("");
-				return;
+		function replyList(){
+			//1.해당하는 게시글의 댓글가져오고
+			replyService.getList(${board.bno} , function(reply){
+			//2.댓글 잘 가공해서 화면에 넣을 내용을 만들고 (html)	
+			console.log(reply)
+			replyStr="";
+			for(var i=0; i<reply.length; i++){
+				replyStr += "<li> <span hidden>"+reply[i].rno+"</span>" +'<span class="replyModify">'+reply[i].reply+"</span>("+reply[i].replyer+") - " + replyService.time(reply[i].replyDate) +' [<span class="btnDel"><a href="#">X</a></span>] </li>';
 			}
-			for(var i = 0; i < list.length; i++){		// 2. 화면에 넣을 댓글 가공
-				str += "<li class='left clearfix' data-rno='";
-				str += list[i].rno;
-				str += "'>	<div><div class='header'><strong class='primary-font'>";
-				str += list[i].replyer;
-				str += "</strong>		<small class='pull-right text-muted'>";
-				str += replyService.displayTime(list[i].replyDate);
-				str += "</small></div>		<p>";
-				str += list[i].reply;
-				str += "</p></div></li>";
-			}
-			$(".chat").html(str);		// 3. 해당 위치에 삽입
+			console.log("넣어야할 리플화면",replyStr);
+			//3.해당하는 위치에 넣어준다.
+			$("#chat").html(replyStr);
+		
+			} );	
+		}
+		
+		$(document).ready(function(){ 
+			replyList();
 		});
 		
-		var modal = $(".modal");
-		
-		$("#replyBtn").click(function(){
-			modal.find("input").val("");
-			
-			$(".modal").modal("show");
-		});
-		
-		$("#registerBtn").click(function(){
-			var reply = {
-				reply: modal.find("input[name='reply']").val(),
-				replyer: modal.find("input[name='replyer']").val(),
-				bno:${board.bno}
-			};
-			
-			replyService.add(reply, function(res){	// 댓글 작성
-				alert(res);
-				modal.find("input").val("");
-				modal.modal("hide");
+		/* 동적 생성된 dom이므로 eventListener 등록 불가
+		#(".btnDel").click(function(){
+			replyService.del(rno, function(a){		// 댓글 삭제
+				console.log(a + "삭제됨.")
 			});
-		});
-		
-		/*
-		replyService.read(8, function(a){
-			console.log(a)
-		});
-		
-		reply={reply:"JavaScript로 Test",replyer:"관리자박",bno:285};
-		replyService.add(reply, function(a){	// 댓글 작성
-			console.log(a)
-		});
-		replyService.del(20, function(a){		// 댓글 삭제
-			console.log(a)
-		});
+		});*/
 
-		rep={reply:"(수정 완료)",replyer:"관리자 박"};
-		replyService.update(45, rep, function(a){	// 댓글 수정
-			console.log(a)
+		$("#replyBtn").click(function(e){
+			var reply = {bno:"${board.bno}",reply:$("#replyData").val(),replyer:$("#replyWriter").val())};
+			replyService.add(reply,replyList);
+			$("#replyData").val("");
+			$("#replyWriter").val("");
 		});
-		*/
+		
+		$("#chat").on("click",".btnDel",function(e){  
+			e.preventDefault();//걸려있는 이벤트 무시
+			console.log("삭제버튼 클릭");
+			var pw=prompt("패스워드를 입력하세요");
+			if(pw==1234){
+				//1.해당하는 댓글번호 일기
+				var rno=$(this).prev().text();
+				console.log("댓글번호",rno);
+				//2.삭제 js 호출     //3.댓글 목록갱신
+				replyService.del(rno,replyList );
+			}else{
+				alert("패스워드가 다릅니다.");
+			}
+		} );
+
+		//수정
+		//1.댓글내용이 클릭되면 수정이 가능하도록 입력창으로 변경
+		$("#chat").on("click",".replyModify",function(e){  
+			console.log("댓글내용클릭");
+			$(this).removeClass(); //다시 클릭이 안되도록  class 속성삭제
+			var replyData=$(this).text(); //클릭한 댓글 내용
+			console.log("댓글내용",replyData);
+			var rno=$(this).prev().text(); // 클릭한 댓글 번호
+			console.log("댓글번호",rno);
+			var str='<input type="text" value="'+replyData+'">';
+			$(this).html(str).children().focus(); //바로 수정이 가능하도록 포커스 이동
+			//2.포커스가 사라지면 수정이 되도록 js 호출
+			//$("#chat").on("blur","input",function(e){  //누적문제 발생함으로
+			//(why? 엘리먼트 삭제시 포커스를 잃었다는 이벤트를 발생함으로)
+			$(':focus').on("blur",function(e){ //현재포커스 기준으로 수정
+				console.log("댓글수정작업");
+				var modifyData=$(this).val(); //변경한 댓글내용읽기
+				console.log("수정할내용:",modifyData);
+				reply={reply:modifyData};     
+				replyService.modify(rno,reply,replyList);  //3.댓글 목록 재갱신 
+			}); 
+		});
 	</script>
 </body>
 </html>
