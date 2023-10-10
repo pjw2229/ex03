@@ -41,7 +41,7 @@ public class BoardController {
 		log.info("get");
 	}
 
-	@PostMapping("/register")	// 등록(작성글 - BoardVO) board/register (post) <- 입력화면(get)
+	@PostMapping(value = "/register", produces = "text/plain; charset=UTF-8")	// 등록(작성글 - BoardVO) board/register (post) <- 입력화면(get)
 	public String register(BoardVO vo, RedirectAttributes rttr) {
 		log.info("register url post 요청");
 		service.register(vo);
@@ -83,7 +83,7 @@ public class BoardController {
 		m.addAttribute("cri", cri);
 	}
 
-	@PostMapping("/modify")		// 수정(수정글 - BoardVO) board/modify (post) <- 입력화면(get)
+	@PostMapping(value = "/modify", produces = "text/plain; charset=UTF-8")	// 수정(수정글 - BoardVO) board/modify (post) <- 입력화면(get)
 	public String modify(BoardVO vo, RedirectAttributes rttr, Criteria cri) {
 		log.info("수정 url 요청");
 		if(service.modify(vo)) {

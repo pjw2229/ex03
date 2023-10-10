@@ -40,7 +40,7 @@
                         	</td>
                         	<td>
                         		<div class="panel-heading">
-                        			<div>댓글 달린 글 갯수 : ${totalReplyCount}개</div>
+                        			<span id="replybnocount"></span>
                         		</div>
                         	</td>
                         	<!--
@@ -153,6 +153,15 @@
     	}
     	$("#myModal").modal("show");
 	}
+</script>
+<script>
+	$.ajax({
+		url:"/myapi/replybnocount",
+		type:"get",
+		success:function(res){
+			$("#replybnocount").text(res);
+		}
+	});
 </script>
 </body>
 </html>
