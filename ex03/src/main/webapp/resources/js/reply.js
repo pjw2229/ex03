@@ -95,6 +95,19 @@ var replyService = (function(){
 		});
 	};
 	
+	// 댓글 갯수
+	function cnt(bno,callback,error){
+		console.log("댓글 갯수");
+		$.getJSON("/replies/count/" + bno, function(result){
+			console.log("댓글 " + bno + "번의 댓글 수 가져옴.");
+			if(callback)
+				callback(result);
+		}).fail(function(xhr,status,er){
+			if(error)
+				error(er);
+		});
+	};
+	
 	function remove(rno,callback,error){
 		console.log("댓글 삭제");
 		$.ajax({
@@ -112,5 +125,5 @@ var replyService = (function(){
 		})
 	}
 	
-	return {add:add, getList:getList, displayTime:displayTime, update:modify, read:get, del:remove};	// 이름 : 값(함수)
+	return {add:add, getList:getList, time:displayTime, update:modify, read:get, cnt:cnt, del:remove};	// 이름 : 값(함수)
 })();

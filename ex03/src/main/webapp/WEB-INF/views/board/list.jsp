@@ -52,6 +52,9 @@
 	                            	<td>
 	                                	<a href="/board/get?bno=${board.bno}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">
 	                                    	<c:out value="${board.title}"/>
+	                                    	<c:if test="${not empty board.replyCount}">
+	                                    		<c:out value="[${board.replyCount}]"/>
+	                                    	</c:if>
 	                                	</a>
 	                                </td>
 	                                <td><c:out value="${board.writer}"/></td>
