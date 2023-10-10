@@ -74,4 +74,9 @@ public class BoardServiceImpl implements BoardService {
 	public Long totalReplyCount() {
 		return mapper.totalReplyCount();
 	}
+
+	@Override
+	public Long bestReply() {
+		return mapper.bestReply();
+	}
 }

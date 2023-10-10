@@ -14,6 +14,7 @@ public interface BoardService {
 	Long cnt(Criteria cri);		// 6. 게시글 갯수
 	Long todayCnt(Criteria cri);
 	Long totalReplyCount();
+	Long bestReply();
 	void recom(Long bno);
 	void unrecom(Long bno);
 }

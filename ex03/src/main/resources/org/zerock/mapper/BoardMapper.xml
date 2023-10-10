@@ -46,6 +46,10 @@
 	<select id="totalReplyCount" resultType="long">
 		select count(*) from(select count(rno) from tbl_reply group by bno)
 	</select>
+	<select id="bestReply" resultType="long">
+		select bno from (select bno, count(*) rcount from tbl_reply group by bno)
+		where rcount = (select max(count(*)) maxReply from tbl_reply group by bno)
+	</select>
 	<select id="read" resultType="org.zerock.domain.BoardVO">
 		select * from TBL_BOARD where bno=#{bno}
 	</select>

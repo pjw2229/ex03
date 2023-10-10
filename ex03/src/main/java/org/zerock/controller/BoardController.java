@@ -27,6 +27,7 @@ public class BoardController {
 
 	@GetMapping("/list")	// board/list
 	public void list(Model m, Criteria cri, Locale locale) {
+		m.addAttribute("best", service.bestReply());
 		m.addAttribute("totalReplyCount", service.totalReplyCount());
 		m.addAttribute("serverTime", DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale).format(new Date()));
 		m.addAttribute("cnt", service.cnt(cri));

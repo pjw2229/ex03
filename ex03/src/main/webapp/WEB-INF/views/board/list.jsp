@@ -18,6 +18,16 @@
                         			<div>게시글 목록(<a href="register">쓰기</a>)</div>
                         		</div>
                         	</td>
+                        	<td>
+                    			<div class="panel-heading">
+                        			<div>
+                        				추천 글 : 
+	                        			<a href="/board/get?bno=${best}&pageNum=${pageMaker.cri.pageNum}&amount=${pageMaker.cri.amount}">
+	                        			${best}번
+	                        			</a>
+                        			</div>
+                        		</div>
+                        	</td>
                     		<td>
                     			<div class="panel-heading">
                         			<div>전체 글 갯수 : ${cnt}개</div>

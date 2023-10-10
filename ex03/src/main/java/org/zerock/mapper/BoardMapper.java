@@ -25,6 +25,7 @@ public interface BoardMapper {
 	List<HourGroupVO> hourGroup();		// 작성 시간대별 글 갯수 통계 - 00 5 / 01 1 / .. / 23 11
 	Long todayCount(Criteria cri);		// 게시글 검색
 	Long totalReplyCount();
+	Long bestReply();
 	void recom(Long bno);				// 추천 시 추천 카운트 +1
 	void unrecom(Long bno);				// 비추천 시 비추천 카운트 +1
 }
