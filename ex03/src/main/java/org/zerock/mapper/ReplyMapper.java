@@ -11,4 +11,5 @@ public interface ReplyMapper {
 	int delete(Long rno);				// 삭제
 	ReplyVO get(Long rno);				// 댓글 1개 보기
 	Long cnt(Long bno);					// 댓글 갯수
+	Long todayCount();
 }

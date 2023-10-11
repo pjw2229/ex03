@@ -80,7 +80,7 @@
 		});
 		
 		
-		$("#btnReplyWrite").on("click",function(e){
+		$("#btnReplyWrite").click(function(e){
 			//1.작성한 리플내용과 작성자와 글번호를 읽어서
 			var replyData=$("#replyData").val();
 			var replyWriter=$("#replyWriter").val();
@@ -103,7 +103,7 @@
 		});
 		*/
 		// #chat 존재dom       .btnDel 실제대상(동작요소)
-		$("#chat").on("click",".btnDel",function(e){  
+		$("#chat").click(".btnDel",function(e){  
 			e.preventDefault();//걸려있는 이벤트 무시
 			console.log("삭제버튼 클릭");
 			var pw=prompt("패스워드를 입력하세요");
@@ -116,26 +116,21 @@
 			}else{
 				alert("패스워드가 다릅니다.");
 			}
-		} );
+		});
 		
 		//수정
 		//1.댓글내용이 클릭되면 수정이 가능하도록 입력창으로 변경
-		$("#chat").on("click",".replyModify",function(e){  
-			console.log("댓글내용클릭");
+		$("#chat").click(".replyModify",function(e){
 			$(this).removeClass(); //다시 클릭이 안되도록  class 속성삭제
 			var replyData=$(this).text(); //클릭한 댓글 내용
-			console.log("댓글내용",replyData);
 			var rno=$(this).prev().text(); // 클릭한 댓글 번호
-			console.log("댓글번호",rno);
 			var str='<input type="text" value="'+replyData+'">';
 			$(this).html(str).children().focus(); //바로 수정이 가능하도록 포커스 이동
 			//2.포커스가 사라지면 수정이 되도록 js 호출
 			//$("#chat").on("blur","input",function(e){  //누적문제 발생함으로
 			//(why? 엘리먼트 삭제시 포커스를 잃었다는 이벤트를 발생함으로)
-			$(':focus').on("blur",function(e){ //현재포커스 기준으로 수정
-				console.log("댓글수정작업");
+			$(':focus').blur(function(e){ //현재포커스 기준으로 수정
 				var modifyData=$(this).val(); //변경한 댓글내용읽기
-				console.log("수정할내용:",modifyData);
 				reply={reply:modifyData};     
 				replyService.modify(rno,reply,replyList);  //3.댓글 목록 재갱신 
 			}); 

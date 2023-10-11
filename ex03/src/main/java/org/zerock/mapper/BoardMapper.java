@@ -21,10 +21,10 @@ public interface BoardMapper {
 	// insert, update, delete시 return type을 int하면 처리된 행을 개수가 return된다.
 
 	List<RankVO> rank();				// (랭킹 5등까지) 작성자, 작성글 개수
-	Long count(Criteria cri);						// 전체 글 갯수
+	Long count(Criteria cri);			// 전체 글 갯수
 	List<BoardVO> lastBoard();			// 업데이트 일자 기준 가장 최신글 5개
 	List<HourGroupVO> hourGroup();		// 작성 시간대별 글 갯수 통계 - 00 5 / 01 1 / .. / 23 11
-	Long todayCount(Criteria cri);		// 게시글 검색
+	Long todayCount();		// 오늘 작성한 게시글
 	Long totalReplyCount();
 	Long bestReply();
 	void recom(Long bno);				// 추천 시 추천 카운트 +1

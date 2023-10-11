@@ -13,7 +13,7 @@ public interface BoardService {
 	boolean remove(Long bno);		// 4. 게시글 삭제
 	BoardVO get(Long bno);		// 5. 게시글 상세
 	Long cnt(Criteria cri);		// 6. 게시글 갯수
-	Long todayCnt(Criteria cri);
+	Long todayCnt();
 	Long totalReplyCount();
 	Long bestReply();
 	void recom(Long bno);

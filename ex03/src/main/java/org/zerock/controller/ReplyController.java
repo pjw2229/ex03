@@ -63,4 +63,9 @@ public class ReplyController {
 	public Long urlCnt(@PathVariable("bno") Long bno) {
 		return service.cnt(285L);
 	}
+	
+	@PostMapping("/newReply")
+	public Long newReply() {
+		return service.todayCount();
+	}
 }

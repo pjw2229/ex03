@@ -34,13 +34,18 @@ public class BoardController {
 		m.addAttribute("totalReplyCount", service.totalReplyCount());
 		m.addAttribute("serverTime", DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale).format(new Date()));
 		m.addAttribute("cnt", service.cnt(cri));
-		m.addAttribute("todayCnt", service.todayCnt(cri));
+		m.addAttribute("todayCnt", service.todayCnt());
 		m.addAttribute("list", service.getList(cri));	// -> board/list.jsp
 		m.addAttribute("pageMaker", new PageDTO(cri, service.cnt(cri)));
 	}
 	
 	@GetMapping("/newSearch")
 	public void newSearch() {
+		
+	}
+	
+	@GetMapping("/newReply")
+	public void newReply() {
 		
 	}
 	

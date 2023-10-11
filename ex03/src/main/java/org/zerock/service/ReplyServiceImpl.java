@@ -45,4 +45,9 @@ public class ReplyServiceImpl implements ReplyService{
 	public Long cnt(Long bno) {
 		return mapper.cnt(bno);
 	}
+
+	@Override
+	public Long todayCount() {
+		return mapper.todayCount();
+	}
 }

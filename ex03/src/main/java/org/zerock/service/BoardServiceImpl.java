@@ -56,8 +56,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Long todayCnt(Criteria cri) {
-		return mapper.todayCount(cri);
+	public Long todayCnt() {
+		return mapper.todayCount();
 	}
 	
 	@Override

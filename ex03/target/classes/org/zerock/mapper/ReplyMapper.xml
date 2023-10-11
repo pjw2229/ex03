@@ -21,4 +21,7 @@
 	<select id="cnt" resultType="long">
 		select count(*) from tbl_reply where bno=#{bno}
 	</select>
+	<select id="todayCount" resultType="long">
+		select count(*) from tbl_reply where to_char(replydate,'yyyyMMdd') = to_char(sysDate,'yyyyMMdd')
+	</select>
 </mapper>
