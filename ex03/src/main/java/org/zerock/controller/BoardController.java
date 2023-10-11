@@ -46,9 +46,14 @@ public class BoardController {
 		
 	}
 	
+	@GetMapping("/chart")
+	public void chart() {
+		
+	}
+	
 	@GetMapping("/newReply")
-	public void newReply(Model m) {
-		m.addAttribute("todayCnt", rservice.todayCount());
+	public void newReply() {
+		
 	}
 	
 	@PostMapping("/newSearch")

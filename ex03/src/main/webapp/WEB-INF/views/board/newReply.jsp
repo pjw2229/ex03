@@ -7,24 +7,29 @@
 <title>new reply</title>
 </head>
 <body>
-	오늘의 리플 갯수 : <strong id="rcnt">${todayCnt}</strong><br>
+	오늘의 리플 갯수 : <strong id="rcnt"></strong><br>
 	<button id="btn">확인</button><br>
 	<div id="rlist">
 	</div>
 	<script src="../resources/vendor/jquery/jquery.min.js"></script>    <!-- jQuery -->
 	<script>
 	$(function(){
+		function todayCnt(res){
+			$("#rcnt").html(res);
+		}
+		
 		$("#btn").click(function(){
-			/*
+			
 			$.ajax({
 				type:"get",
 				url:"http://localhost:8080/replies/todayCount.json",
 				success:function(res){
 					console.log(res);
-					$("#rcnt").html(res);
+					setInterval(todayCnt(res), 10000);
+					//$("#rcnt").html(res);
 				}
 			});
-			*/
+			
 			$.ajax({
 				type:"post",
 				url:"http://localhost:8080/replies/newReplylist",
