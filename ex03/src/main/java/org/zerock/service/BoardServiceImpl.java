@@ -79,4 +79,9 @@ public class BoardServiceImpl implements BoardService {
 	public Long bestReply() {
 		return mapper.bestReply();
 	}
+
+	@Override
+	public List<BoardVO> searchTitle(String keyword) {
+		return mapper.searchTitle(keyword);
+	}
 }

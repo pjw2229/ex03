@@ -2,12 +2,15 @@ package org.zerock.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
@@ -34,6 +37,16 @@ public class BoardController {
 		m.addAttribute("todayCnt", service.todayCnt(cri));
 		m.addAttribute("list", service.getList(cri));	// -> board/list.jsp
 		m.addAttribute("pageMaker", new PageDTO(cri, service.cnt(cri)));
+	}
+	
+	@GetMapping("/newSearch")
+	public void newSearch() {
+		
+	}
+	
+	@PostMapping("/newSearch")
+	public List<BoardVO> Search(@RequestBody Criteria cri) {
+		return service.getList(cri);
 	}
 
 	@GetMapping("/register")

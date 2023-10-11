@@ -12,6 +12,7 @@ public interface BoardMapper {
 	//@Select("select * from tbl_board")
 	List<BoardVO> getList();			// 게시글 목록보기
 	List<BoardVO> getListWithPaging(Criteria cri);	// 페이지 처리 - 현재 무조건 2페이지 출력(1페이지당 10개)
+	List<BoardVO> searchTitle(String keyword);				// 제목 검색
 	BoardVO read(Long bno);				// 게시글 상세
 	void insert(BoardVO vo);			// 게시글 작성
 	void insertSelectKey(BoardVO vo);	// 게시글 작성(작성된 글번호 확인)

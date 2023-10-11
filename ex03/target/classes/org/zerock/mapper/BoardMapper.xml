@@ -23,6 +23,9 @@
 			</foreach>
 		</trim>
 	</sql>
+	<select id="searchTitle" resultType="org.zerock.domain.BoardVO">
+		select * from tbl_board where title like '%'||#{keyword}||'%'
+	</select>
 	<!-- id : method 이름, resultType : 결과(select문에만 필요) -->
 	<select id="getList" resultType="org.zerock.domain.BoardVO">
 		select * from tbl_board order by updatedate desc
@@ -41,7 +44,6 @@
 		where rn > (#{pageNum} - 1) * #{amount}
 		order by updatedate desc) left join (select bno, count(*) replyCount from tbl_reply group by bno) using (bno)
 	]]>
-		
 	</select>
 	<select id="totalReplyCount" resultType="long">
 		select count(*) from(select count(rno) from tbl_reply group by bno)

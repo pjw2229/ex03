@@ -7,6 +7,7 @@ import org.zerock.domain.Criteria;
 public interface BoardService {
 	// 사용자 관점 서비스
 	List<BoardVO> getList(Criteria cri);	// 1. 게시글 목록 보기
+	List<BoardVO> searchTitle(String keyword);
 	void register(BoardVO vo);	// 2. 게시글 작성
 	boolean modify(BoardVO vo);		// 3. 게시글 수정
 	boolean remove(Long bno);		// 4. 게시글 삭제
