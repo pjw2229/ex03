@@ -110,4 +110,15 @@
 		group by to_char(regDate,'HH')
 		order by "regDate"
 	</select>
+	<select id="bestboard" resultType="org.zerock.domain.BestBoardVO">
+	<![CDATA[
+		select title, replyCount
+		from tbl_board left join (
+		    select bno, count(*) replyCount from TBL_REPLY
+		    where updatedate > (select sysdate - (1 / 24) from dual)
+		    group by bno) using (bno)
+		where replyCount is not null and rownum < 4
+		order by replyCount desc
+	]]>
+	</select>
 </mapper>

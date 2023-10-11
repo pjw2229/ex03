@@ -56,6 +56,11 @@ public class BoardController {
 		
 	}
 	
+	@GetMapping("/bestboard")
+	public void bestboard(Model m) {
+		m.addAttribute("best", service.bestboard());
+	}
+	
 	@PostMapping("/newSearch")
 	public List<BoardVO> Search(@RequestBody Criteria cri) {
 		return service.getList(cri);

@@ -1,6 +1,8 @@
 package org.zerock.service;
 
 import java.util.List;
+
+import org.zerock.domain.BestBoardVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 
@@ -16,6 +18,7 @@ public interface BoardService {
 	Long todayCnt();
 	Long totalReplyCount();
 	Long bestReply();
+	List<BestBoardVO> bestboard();
 	void recom(Long bno);
 	void unrecom(Long bno);
 }

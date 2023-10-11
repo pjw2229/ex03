@@ -78,8 +78,7 @@
 		$(document).ready(function(){ 
 			replyList();
 		});
-		
-		
+
 		$("#btnReplyWrite").click(function(e){
 			//1.작성한 리플내용과 작성자와 글번호를 읽어서
 			var replyData=$("#replyData").val();
@@ -130,8 +129,7 @@
 			//$("#chat").on("blur","input",function(e){  //누적문제 발생함으로
 			//(why? 엘리먼트 삭제시 포커스를 잃었다는 이벤트를 발생함으로)
 			$(':focus').blur(function(e){ //현재포커스 기준으로 수정
-				var modifyData=$(this).val(); //변경한 댓글내용읽기
-				reply={reply:modifyData};     
+				reply={reply:$(this).val()};      //변경한 댓글내용읽기
 				replyService.modify(rno,reply,replyList);  //3.댓글 목록 재갱신 
 			}); 
 		});

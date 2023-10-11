@@ -3,6 +3,7 @@ package org.zerock.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.zerock.domain.BestBoardVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.HourGroupVO;
@@ -24,6 +25,7 @@ public interface BoardMapper {
 	Long count(Criteria cri);			// 전체 글 갯수
 	List<BoardVO> lastBoard();			// 업데이트 일자 기준 가장 최신글 5개
 	List<HourGroupVO> hourGroup();		// 작성 시간대별 글 갯수 통계 - 00 5 / 01 1 / .. / 23 11
+	List<BestBoardVO> bestboard();
 	Long todayCount();		// 오늘 작성한 게시글
 	Long totalReplyCount();
 	Long bestReply();

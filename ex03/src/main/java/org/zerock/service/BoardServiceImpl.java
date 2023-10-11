@@ -2,6 +2,7 @@ package org.zerock.service;
 
 import java.util.List;
 import org.springframework.stereotype.Service;
+import org.zerock.domain.BestBoardVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.mapper.BoardMapper;
@@ -83,5 +84,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> searchTitle(String keyword) {
 		return mapper.searchTitle(keyword);
+	}
+
+	@Override
+	public List<BestBoardVO> bestboard() {
+		return mapper.bestboard();
 	}
 }
