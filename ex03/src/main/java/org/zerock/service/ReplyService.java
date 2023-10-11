@@ -2,6 +2,7 @@ package org.zerock.service;
 
 import java.util.List;
 
+import org.zerock.domain.NewReplyVO;
 import org.zerock.domain.ReplyVO;
 
 public interface ReplyService {
@@ -12,4 +13,5 @@ public interface ReplyService {
 	ReplyVO get(Long rno);				// 댓글 1개 보기
 	Long cnt(Long bno);					// 댓글 갯수
 	Long todayCount();
+	List<NewReplyVO> newReply();
 }

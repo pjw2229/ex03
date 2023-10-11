@@ -24,4 +24,7 @@
 	<select id="todayCount" resultType="long">
 		select count(*) from tbl_reply where to_char(replydate,'yyyyMMdd') = to_char(sysDate,'yyyyMMdd')
 	</select>
+	<select id="newReply" resultType="org.zerock.domain.NewReplyVO">
+		select reply, replyer from tbl_reply where to_char(replydate,'yyyyMMdd') = to_char(sysDate,'yyyyMMdd') order by replydate
+	</select>
 </mapper>

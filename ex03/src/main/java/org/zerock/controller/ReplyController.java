@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.zerock.domain.NewReplyVO;
 import org.zerock.domain.ReplyVO;
 import org.zerock.service.ReplyService;
 
@@ -64,8 +65,13 @@ public class ReplyController {
 		return service.cnt(285L);
 	}
 	
-	@PostMapping("/newReply")
-	public Long newReply() {
+	@GetMapping("/todayCount")		// 오늘 입력된 댓글 갯수 보여준다.
+	public Long todayCount() {
 		return service.todayCount();
+	}
+	
+	@PostMapping(value = "/newReplylist", produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<NewReplyVO> newReplies(){
+		return service.newReply();
 	}
 }

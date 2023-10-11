@@ -3,6 +3,7 @@ package org.zerock.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.zerock.domain.NewReplyVO;
 import org.zerock.domain.ReplyVO;
 import org.zerock.mapper.BoardMapper;
 import org.zerock.mapper.ReplyMapper;
@@ -49,5 +50,10 @@ public class ReplyServiceImpl implements ReplyService{
 	@Override
 	public Long todayCount() {
 		return mapper.todayCount();
+	}
+
+	@Override
+	public List<NewReplyVO> newReply() {
+		return mapper.newReply();
 	}
 }

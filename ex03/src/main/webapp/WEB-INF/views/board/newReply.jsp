@@ -6,7 +6,7 @@
 <title>new reply</title>
 </head>
 <body>
-	오늘의 리플 갯수 : <div id="rcnt"></div><br>
+	오늘의 리플 갯수 : <strong id="rcnt"></strong><br>
 	<button id="btn">확인</button><br>
 	<div id="rlist">
 	</div>
@@ -15,10 +15,24 @@
 	$(function(){
 		$("#btn").click(function(){
 			$.ajax({
-				type:"post",
-				url:"http://localhost:8080/replies/newReply",
+				type:"get",
+				url:"http://localhost:8080/replies/todayCount.json",
 				success:function(res){
+					console.log(res);
 					$("#rcnt").html(res);
+				}
+			});
+			
+			$.ajax({
+				type:"post",
+				url:"http://localhost:8080/replies/newReplylist",
+				success:function(res){
+					console.log("결과 : ",res);
+					var htmlStr = "";
+					for(var i=0; i < res.length; i++){
+						htmlStr += (i + 1) + ". " + res[i].reply + "(" + res[i].replyer + ")<br>"
+					}
+					$("#rlist").html(htmlStr);
 				}
 			});
 		});
