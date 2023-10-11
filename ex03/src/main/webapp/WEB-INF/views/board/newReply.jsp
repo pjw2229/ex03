@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,7 +7,7 @@
 <title>new reply</title>
 </head>
 <body>
-	오늘의 리플 갯수 : <strong id="rcnt"></strong><br>
+	오늘의 리플 갯수 : <strong id="rcnt">${todayCnt}</strong><br>
 	<button id="btn">확인</button><br>
 	<div id="rlist">
 	</div>
@@ -14,6 +15,7 @@
 	<script>
 	$(function(){
 		$("#btn").click(function(){
+			/*
 			$.ajax({
 				type:"get",
 				url:"http://localhost:8080/replies/todayCount.json",
@@ -22,7 +24,7 @@
 					$("#rcnt").html(res);
 				}
 			});
-			
+			*/
 			$.ajax({
 				type:"post",
 				url:"http://localhost:8080/replies/newReplylist",

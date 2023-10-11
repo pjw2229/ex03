@@ -17,6 +17,7 @@ import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageDTO;
 import org.zerock.service.BoardService;
+import org.zerock.service.ReplyService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -26,7 +27,8 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/board/**")
 @AllArgsConstructor
 public class BoardController {
-	BoardService service;
+	private BoardService service;
+	private ReplyService rservice;
 
 	@GetMapping("/list")	// board/list
 	public void list(Model m, Criteria cri, Locale locale) {
@@ -45,8 +47,8 @@ public class BoardController {
 	}
 	
 	@GetMapping("/newReply")
-	public void newReply() {
-		
+	public void newReply(Model m) {
+		m.addAttribute("todayCnt", rservice.todayCount());
 	}
 	
 	@PostMapping("/newSearch")
