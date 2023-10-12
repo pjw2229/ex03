@@ -117,7 +117,7 @@
 		    select bno, count(*) replyCount from TBL_REPLY
 		    where updatedate > (select sysdate - (1 / 24) from dual)
 		    group by bno) using (bno)
-		where replyCount is not null and rownum < 4
+		where replyCount is not null and rownum < 11
 		order by replyCount desc
 	]]>
 	</select>

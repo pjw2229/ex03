@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.zerock.domain.BestBoardVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyVO;
@@ -63,5 +64,10 @@ public class MyApiController {
 		cri.setAmount(amount);
 		cri.setPageNum(page);
 		return service.getList(cri);
+	}
+	
+	@GetMapping("/bestboard")
+	public List<BestBoardVO> postbest() {
+		return service.bestboard();
 	}
 }

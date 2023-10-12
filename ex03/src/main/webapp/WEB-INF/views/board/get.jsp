@@ -61,7 +61,7 @@
 		// console.log(replyService);
 		function replyList(){
 			//1.해당하는 게시글의 댓글가져오고
-			replyService.getList(${board.bno} , function(reply){
+			replyService.getList(${board.bno}, function(reply){
 				//2.댓글 잘 가공해서 화면에 넣을 내용을 만들고 (html)	
 				console.log(reply)
 				replyStr="";

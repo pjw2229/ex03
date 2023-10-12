@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.zerock.domain.BestBoardVO;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageDTO;
@@ -57,8 +58,8 @@ public class BoardController {
 	}
 	
 	@GetMapping("/bestboard")
-	public void bestboard(Model m) {
-		m.addAttribute("best", service.bestboard());
+	public void getbest() {
+		
 	}
 	
 	@PostMapping("/newSearch")
