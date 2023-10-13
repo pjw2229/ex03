@@ -34,7 +34,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />	<!-- aop 적용을 위해 info로 바꾼다. -->
 		<appender-ref ref="console" />
 	</root>
 	

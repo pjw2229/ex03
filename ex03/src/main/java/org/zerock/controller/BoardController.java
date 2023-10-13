@@ -97,6 +97,7 @@ public class BoardController {
 	public String remove(Long bno, RedirectAttributes rttr, String pw) {
 		log.info("삭제 url 요청");
 		if(pw.equals("1234")) {
+			rservice.removebno(bno);
 			if(service.remove(bno)) {		// 이상 없으면 result 이름으로 success 문자 전송
 				rttr.addFlashAttribute("oper", "remove");
 				rttr.addFlashAttribute("result", bno);

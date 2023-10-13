@@ -15,6 +15,9 @@
 	<delete id="delete">
 		delete from tbl_reply where rno=#{rno}
 	</delete>
+	<delete id="deletebno">
+		delete from tbl_reply where bno=#{bno}
+	</delete>
 	<select id="get" resultType="org.zerock.domain.ReplyVO">
 		select * from tbl_reply where rno=#{rno}
 	</select>

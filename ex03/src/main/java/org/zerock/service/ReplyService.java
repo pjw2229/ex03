@@ -10,6 +10,7 @@ public interface ReplyService {
 	List<ReplyVO> getList(Long bno);	// 댓글 보기
 	int modify(ReplyVO vo);				// 댓글 수정
 	int remove(Long rno);				// 댓글 삭제
+	void removebno(Long bno);
 	ReplyVO get(Long rno);				// 댓글 1개 보기
 	Long cnt(Long bno);					// 댓글 갯수
 	Long todayCount();

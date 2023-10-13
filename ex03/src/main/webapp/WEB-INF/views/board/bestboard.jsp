@@ -31,10 +31,9 @@
 			url:"/myapi/bestboard.json",
 			success:function(res){
 				var htmlStr = "";
-				//preResult = res[0];
 				if(preResult){		// preResult 존재 시 이전 데이터와 현재 데이터를 비교해 순위변경 표시
 					for(var rank = 0; rank < res.length; rank++){	// 현재 데이터로 이전 데이터 비교
-						for(var i = 0; i < preResult.length; i++){			// 각각 현재값이 이전에 어디에 있는지 확인
+						for(var i = 0; i < preResult.length; i++){	// 각각 현재값이 이전에 어디에 있는지 확인
 							if(res[rank].title == preResult[i].title){
 								var diffRank = "-";		// 동일 순위로 시작
 								if(rank > i){	// 순위 감소

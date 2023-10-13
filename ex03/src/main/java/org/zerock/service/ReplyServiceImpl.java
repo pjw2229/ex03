@@ -56,4 +56,9 @@ public class ReplyServiceImpl implements ReplyService{
 	public List<NewReplyVO> newReply() {
 		return mapper.newReply();
 	}
+
+	@Override
+	public void removebno(Long bno) {
+		mapper.deletebno(bno);
+	}
 }
